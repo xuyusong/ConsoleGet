@@ -5,7 +5,17 @@ var offlineArray = new Array();
 //test 9-10
 
 
-
+//828
+// arrayId[0] = "442106046"
+// arrayId[1] = "447589609"
+// arrayId[2] = "440822181"
+// arrayId[3] = "447589609"
+// arrayId[4] = "444118585"
+// arrayId[5] = "440680529"
+// arrayId[6] = "440592307"
+// arrayId[7] = "439310692"
+// arrayId[8] = "445937063"
+// arrayId[9] = "444025185"
 
 arrayId[0] = "512449900"
 arrayId[1] = "511750438"
