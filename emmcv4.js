@@ -88,7 +88,7 @@ function getResult(id) {
             jsons = eval(result.rows);
             var isdown = jsons[0].down;
             var isup = jsons[0].up;
-            console.log("isdown:"+isdown+" isup"+isup);
+            // console.log("isdown:"+isdown+" isup"+isup);
             if(isdown ==null||undefined||""){
                 offLine();
                 console.error("error");
@@ -129,7 +129,7 @@ function getResult(id) {
                             ////mark.............
                             if(count>0 && !isOffLine){
                                 if(isIoppAlive(innerText)){
-                                    console.log("write To file");
+                                    // console.log("write To file");
                                     Write2File(arrayId[indexOnline]);
                                 }else{
                                     offLine();
