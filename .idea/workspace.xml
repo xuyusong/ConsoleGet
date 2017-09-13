@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="056f6ae0-1822-4309-ab2e-c475c450db15" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/emmcV3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/emmcv4.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/reflash.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/emmcv2.js" afterPath="$PROJECT_DIR$/emmcv2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/emmcv4.js" afterPath="$PROJECT_DIR$/emmcv4.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -77,11 +71,11 @@
       <file leaf-file-name="emmcv4.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/emmcv4.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="88" column="32" lean-forward="true" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
+            <state relative-caret-position="1134">
+              <caret line="140" column="53" lean-forward="true" selection-start-line="140" selection-start-column="53" selection-end-line="140" selection-end-column="53" />
               <folding>
-                <marker date="1505283490000" expanded="true" signature="11690:11733" ph="..." />
-                <marker date="1505283490000" expanded="true" signature="12726:12769" ph="..." />
+                <marker date="1505284418000" expanded="true" signature="11708:11751" ph="..." />
+                <marker date="1505284418000" expanded="true" signature="12744:12787" ph="..." />
               </folding>
             </state>
           </provider>
@@ -220,12 +214,12 @@
       <workItem from="1504063033982" duration="1662000" />
       <workItem from="1504158331387" duration="2217000" />
       <workItem from="1504880457640" duration="26361000" />
-      <workItem from="1505198478262" duration="11597000" />
+      <workItem from="1505198478262" duration="12321000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113094000" />
+    <option name="totallyTimeSpent" value="113818000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -303,8 +297,8 @@
         <state relative-caret-position="1410">
           <caret line="94" column="52" lean-forward="true" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
           <folding>
-            <marker date="1505283490000" expanded="true" signature="11690:11733" ph="..." />
-            <marker date="1505283490000" expanded="true" signature="12726:12769" ph="..." />
+            <marker date="1505284418000" expanded="true" signature="11708:11751" ph="..." />
+            <marker date="1505284418000" expanded="true" signature="12744:12787" ph="..." />
           </folding>
         </state>
       </provider>
@@ -515,11 +509,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/emmcv4.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="88" column="32" lean-forward="true" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
+        <state relative-caret-position="1134">
+          <caret line="140" column="53" lean-forward="true" selection-start-line="140" selection-start-column="53" selection-end-line="140" selection-end-column="53" />
           <folding>
-            <marker date="1505283490000" expanded="true" signature="11690:11733" ph="..." />
-            <marker date="1505283490000" expanded="true" signature="12726:12769" ph="..." />
+            <marker date="1505284418000" expanded="true" signature="11708:11751" ph="..." />
+            <marker date="1505284418000" expanded="true" signature="12744:12787" ph="..." />
           </folding>
         </state>
       </provider>

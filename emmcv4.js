@@ -61,6 +61,7 @@ var indexOnline = 0;
 var indexOffline = 0;
 var count = 0;
 var isOffLine = false;
+var sendFlagTimer ;
 
 showContrl(arrayId[0]);
 
@@ -72,6 +73,7 @@ function getResult(id) {
         dataType:'json',
         async:false,
         success:function(result) {
+            clearTimeout(sendFlagTimer);
             jsons = eval(result.rows);
             var isdown = jsons[0].down;
             var isup = jsons[0].up;
@@ -133,6 +135,7 @@ function getResult(id) {
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
+            clearTimeout(sendFlagTimer);
             console.error("超时");
             console.error(XMLHttpRequest.status);
             console.error(XMLHttpRequest.readyState);
@@ -207,7 +210,7 @@ function sendCommand(id,flag){
 function setSendMsgDisable(time) {
      // ifSend = 1;
     sendFlagTimer = setTimeout(function () {//10秒内不能发命令
-        // ifSend = 0;
+
         // if(count>0){
             if(isOffLine){
                 getResult(offlineArray[indexOnline]);
@@ -217,7 +220,7 @@ function setSendMsgDisable(time) {
         // }else{
         //     nextLoop();
         // }
-         // console.log("====3333==》》》"+arrayId[indexOnline]);
+
 
     }, time * 1000);
 }
