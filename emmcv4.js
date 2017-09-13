@@ -2,59 +2,60 @@ var arrayId = new Array();
 var offlineArray = new Array();
 
 
-//test 9-10
+
 
 
 //828
-// arrayId[0] = "442106046"
-// arrayId[1] = "447589609"
-// arrayId[2] = "440822181"
-// arrayId[3] = "447589609"
-// arrayId[4] = "444118585"
-// arrayId[5] = "440680529"
-// arrayId[6] = "440592307"
-// arrayId[7] = "439310692"
-// arrayId[8] = "445937063"
-// arrayId[9] = "444025185"
+arrayId[0] = "442106046"
+arrayId[1] = "447589609"
+arrayId[2] = "440822181"
+arrayId[3] = "447589609"
+arrayId[4] = "444118585"
+arrayId[5] = "440680529"
+arrayId[6] = "440592307"
+arrayId[7] = "439310692"
+arrayId[8] = "445937063"
+arrayId[9] = "444025185"
 
-arrayId[0] = "512449900"
-arrayId[1] = "511750438"
-arrayId[2] = "512763368"
-arrayId[3] = "512879112"
-arrayId[4] = "512330122"
-arrayId[5] = "512990289"
-arrayId[6] = "512332470"
-arrayId[7] = "512853491"
-arrayId[8] = "512449021"
-arrayId[9] = "512473112"
-arrayId[10] = "512362520"
-arrayId[11] = "511864639"
-arrayId[12] = "512363171"
-arrayId[13] = "510554850"
-//add by xuyusong 8-15
-arrayId[14] = "512471993"
-arrayId[15] = "512625007"
-arrayId[16] = "512763561"
-arrayId[17] = "513147018"
-arrayId[18] = "511714958"
-arrayId[19] = "511943363"
-arrayId[20] = "511763580"
-arrayId[21] = "512325870"
-arrayId[22] = "513119651"
-arrayId[23] = "513622122"
-arrayId[24] = "511873526"
-arrayId[25] = "512864058"
-arrayId[26] = "512373498"
-//add 8-21
-arrayId[27] = "513032668"
-arrayId[28] = "511946682"
-//add by xuyusong 8-22
-arrayId[29] = "512469035"
-arrayId[30] = "512853356"
-//add by xuyusong 9-13 武汉卖场机器
-arrayId[31] = "511881048"
-arrayId[32] = "511933819"
-arrayId[33] = "512578797"
+
+// arrayId[0] = "512449900"
+// arrayId[1] = "511750438"
+// arrayId[2] = "512763368"
+// arrayId[3] = "512879112"
+// arrayId[4] = "512330122"
+// arrayId[5] = "512990289"
+// arrayId[6] = "512332470"
+// arrayId[7] = "512853491"
+// arrayId[8] = "512449021"
+// arrayId[9] = "512473112"
+// arrayId[10] = "512362520"
+// arrayId[11] = "511864639"
+// arrayId[12] = "512363171"
+// arrayId[13] = "510554850"
+// //add by xuyusong 8-15
+// arrayId[14] = "512471993"
+// arrayId[15] = "512625007"
+// arrayId[16] = "512763561"
+// arrayId[17] = "513147018"
+// arrayId[18] = "511714958"
+// arrayId[19] = "511943363"
+// arrayId[20] = "511763580"
+// arrayId[21] = "512325870"
+// arrayId[22] = "513119651"
+// arrayId[23] = "513622122"
+// arrayId[24] = "511873526"
+// arrayId[25] = "512864058"
+// arrayId[26] = "512373498"
+// //add 8-21
+// arrayId[27] = "513032668"
+// arrayId[28] = "511946682"
+// //add by xuyusong 8-22
+// arrayId[29] = "512469035"
+// arrayId[30] = "512853356"
+// //add by xuyusong 9-13 武汉卖场机器
+// arrayId[31] = "511881048"
+// arrayId[32] = "511933819"
+// arrayId[33] = "512578797"
 
 
 
@@ -168,7 +169,7 @@ function sendCommand(id,flag){
     if(count == 0 || isOffLine){
         command = "ps |grep iopp|while read u p o;do kill -9 $p;done;./tvos/bin/iopp.sh;ps |grep iopp";
     }else {
-        command = "logcat -s iopp";
+        command = "logcat  -v threadtime -s iopp";
     }
     console.log(command);
     var cmd ="Command";
@@ -192,7 +193,7 @@ function sendCommand(id,flag){
         success: function (data) {//返回命令在数据库中的id
             if (cmd != "Remote") {//遥控器没有返回结果
                 // loadCmdHistory();
-                setSendMsgDisable(8);
+                setSendMsgDisable(10);
                 // console.log("send==.>");
                 //成功后刷新历史记录
                 // loadCmdHistory();
@@ -279,7 +280,7 @@ function Write2File(id){
         f.Close();
     }
     innerText = "";
-    console.log("这是第："+count+"次记录日志");
+    console.log("这是"+id+"第"+count+"次记录日志");
     nextLoop();
 }
 
@@ -316,7 +317,7 @@ function nextLoop(){
         weight = 10;
 
     }
-    //weight = 3;
+    // weight = 3;
     if(count != 0 && count %weight ==0){
         if(offlineArray =="" ||undefined || null){
             console.log("all client will be tested online");

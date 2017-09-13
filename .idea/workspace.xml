@@ -71,11 +71,12 @@
       <file leaf-file-name="emmcv4.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/emmcv4.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="543">
-              <caret line="152" column="22" lean-forward="true" selection-start-line="152" selection-start-column="22" selection-end-line="152" selection-end-column="22" />
+            <state relative-caret-position="492">
+              <caret line="140" column="21" lean-forward="true" selection-start-line="140" selection-start-column="21" selection-end-line="140" selection-end-column="21" />
               <folding>
-                <marker date="1505286484000" expanded="true" signature="11993:12036" ph="..." />
-                <marker date="1505286484000" expanded="true" signature="13029:13072" ph="..." />
+                <marker date="1505289761000" expanded="true" signature="325:1367" ph="..." />
+                <marker date="1505289761000" expanded="true" signature="12089:12132" ph="..." />
+                <marker date="1505289761000" expanded="true" signature="13125:13168" ph="..." />
               </folding>
             </state>
           </provider>
@@ -214,12 +215,12 @@
       <workItem from="1504063033982" duration="1662000" />
       <workItem from="1504158331387" duration="2217000" />
       <workItem from="1504880457640" duration="26361000" />
-      <workItem from="1505198478262" duration="12531000" />
+      <workItem from="1505198478262" duration="14177000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114028000" />
+    <option name="totallyTimeSpent" value="115674000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -297,8 +298,9 @@
         <state relative-caret-position="1410">
           <caret line="94" column="52" lean-forward="true" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
           <folding>
-            <marker date="1505286484000" expanded="true" signature="11993:12036" ph="..." />
-            <marker date="1505286484000" expanded="true" signature="13029:13072" ph="..." />
+            <marker date="1505289761000" expanded="true" signature="325:1367" ph="..." />
+            <marker date="1505289761000" expanded="true" signature="12089:12132" ph="..." />
+            <marker date="1505289761000" expanded="true" signature="13125:13168" ph="..." />
           </folding>
         </state>
       </provider>
@@ -509,11 +511,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/emmcv4.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="152" column="22" lean-forward="true" selection-start-line="152" selection-start-column="22" selection-end-line="152" selection-end-column="22" />
+        <state relative-caret-position="492">
+          <caret line="140" column="21" lean-forward="true" selection-start-line="140" selection-start-column="21" selection-end-line="140" selection-end-column="21" />
           <folding>
-            <marker date="1505286484000" expanded="true" signature="11993:12036" ph="..." />
-            <marker date="1505286484000" expanded="true" signature="13029:13072" ph="..." />
+            <marker date="1505289761000" expanded="true" signature="325:1367" ph="..." />
+            <marker date="1505289761000" expanded="true" signature="12089:12132" ph="..." />
+            <marker date="1505289761000" expanded="true" signature="13125:13168" ph="..." />
           </folding>
         </state>
       </provider>
