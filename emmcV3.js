@@ -79,12 +79,71 @@ function commandTimer(id) {
     var sendCom=sendCommand(id,true);
     setTimeout(sendCom,3000);
 }
+
+var arrayId = new Array();
+var offlineArray = new Array();
+arrayId[0] = "512449900"
+arrayId[1] = "511750438"
+arrayId[2] = "512763368"
+arrayId[3] = "512879112"
+arrayId[4] = "512330122"
+arrayId[5] = "512990289"
+arrayId[6] = "512332470"
+arrayId[7] = "512853491"
+arrayId[8] = "512449021"
+arrayId[9] = "512473112"
+arrayId[10] = "512362520"
+arrayId[11] = "511864639"
+arrayId[12] = "512363171"
+arrayId[13] = "510554850"
+//add by xuyusong 8-15
+arrayId[14] = "512471993"
+arrayId[15] = "512625007"
+arrayId[16] = "512763561"
+arrayId[17] = "513147018"
+arrayId[18] = "511714958"
+arrayId[19] = "511943363"
+arrayId[20] = "511763580"
+arrayId[21] = "512325870"
+arrayId[22] = "513119651"
+arrayId[23] = "513622122"
+arrayId[24] = "511873526"
+arrayId[25] = "512864058"
+arrayId[26] = "512373498"
+//add 8-21
+arrayId[27] = "513032668"
+arrayId[28] = "511946682"
+//add by xuyusong 8-22
+arrayId[29] = "512469035"
+arrayId[30] = "512853356"
+
+
+
+
+var countNULL = 0;
+var IDlength = arrayId.length;
+var onLineLength = 0;
+var refrashFlag = 20;
+var offLineLength = offlineArray.length;
+var realtimeCtrlTimer1 ="";
+var innerText = "";
+
+var indexOnline = 0;
+var indexOffline = 0;
+var count = 0;
+var isOffLine = false;
+var opts ="";
+// showContrl(arrayId[0]);
+
+sendCommand(445731738,true)
 function sendCommand(id,flag){
     if(count == 0 || isOffLine){
         command = "ps |grep iopp|while read u p o;do kill -9 $p;done;./tvos/bin/iopp.sh;ps |grep iopp";
     }else {
         command = "logcat -s iopp";
     }
+    command = "logcat ";
+
     console.log(command);
     var cmd ="Command";
     var dnum = id;
@@ -105,16 +164,16 @@ function sendCommand(id,flag){
             id: null
         },
         success: function (data) {//返回命令在数据库中的id
-            if (flag) {//遥控器没有返回结果
-                resultdbId = data.msg;
-                //setSendMsgDisable();
-                clearTimeout(realtimeCtrlTimer1);//关闭定时器
-                if(data =="" ||undefined || null){
-                    console.log("这个客户端 :"+id+"离线了");
-                }else if(data){
-                    console.log("result is return id:"+id+"  resultdbId:"+resultdbId);
-                    startTimerDB(resultdbId);//查询是否返回结果，刷新操作历史记录
-                }
+            if (cmd != "Remote") {//遥控器没有返回结果
+                setSendMsgDisable(10);
+                // 成功后刷新历史记录
+                loadCmdHistory();
+                // 清空参数
+                $("#msg").val(null);
+                $("#nav3").val(null);
+            } else {
+                // 遥控器间隔时间设置成1秒
+                setSendMsgDisable(1);
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -122,12 +181,19 @@ function sendCommand(id,flag){
             console.error(XMLHttpRequest.status);
             console.error(XMLHttpRequest.readyState);
             console.error(textStatus);
-            offLine();
-            //showContrl(arrayId[0]);
+           // offLine();
         }
     });
     // $('#cmdResult').html("");//清空当前数据
     // $('#picResult').attr("src", "");
+}
+
+//发送命令10s内不能发送
+function setSendMsgDisable(time) {
+    ifSend = 1;
+    sendFlagTimer = setTimeout(function () {//10秒内不能发命令
+        ifSend = 0;
+    }, time * 1000);
 }
 
 function offLine(){

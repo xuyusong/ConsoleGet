@@ -1,5 +1,12 @@
 var arrayId = new Array();
 var offlineArray = new Array();
+
+
+//test 9-10
+
+
+
+
 arrayId[0] = "512449900"
 arrayId[1] = "511750438"
 arrayId[2] = "512763368"
@@ -34,6 +41,10 @@ arrayId[28] = "511946682"
 //add by xuyusong 8-22
 arrayId[29] = "512469035"
 arrayId[30] = "512853356"
+//add by xuyusong 9-13 武汉卖场机器
+arrayId[31] = "511881048"
+arrayId[32] = "511933819"
+arrayId[33] = "512578797"
 
 
 
@@ -50,36 +61,97 @@ var indexOnline = 0;
 var indexOffline = 0;
 var count = 0;
 var isOffLine = false;
-var opts ="";
+
 showContrl(arrayId[0]);
+
+function getResult(id) {
+    $.ajax({
+        url:'/realtimectrl/loadCmdHistory?type=0',
+        type:'POST',
+        data:{"search.dnum_eq":id,page:1,rows:1,sort:"updateDate",order:"desc"},
+        dataType:'json',
+        async:false,
+        success:function(result) {
+            jsons = eval(result.rows);
+            var isdown = jsons[0].down;
+            var isup = jsons[0].up;
+            console.log("isdown:"+isdown+" isup"+isup);
+            if(isdown ==null||undefined||""){
+                offLine();
+                console.error("error");
+            }else{
+                if(isdown == true &&isup == true){
+                    // for (var v in jsons){
+                    //     for (var key in jsons[v]){
+                    //         console.log("[" + jsons[v][key] + "]");
+                    //         if(typeof(jsons[v][key])=="object"){
+                    //             console.log("obj");
+                    //         }
+                    //         if(typeof(jsons[v][key])=="string") {
+                    //             console.log("string");
+                    //         }
+                    //     }
+                    // }
+                    var updateParam = jsons[0].upParameter;
+                    // console.log(updateParam);
+                    if(updateParam ==null||undefined||"" ){
+                        console.log("获取结果失败");
+                        console.log(jsons);
+                        nextLoop();
+                    }else{
+                        var res = /http:.*txt/;
+                        var arr = new Array();
+                        var arr= res.exec(updateParam);
+                        if(arr ==null||undefined||"" ){
+                            console.log("获取结果失败");
+                            nextLoop();
+                        }else{
+                            var tmpUrl = arr[0].replace(/file.acs.huan.tv/,"admin.acs.huan.tv");
+                            console.log("url====>>"+tmpUrl);
+                            var htmlobj= $.ajax({url:tmpUrl,async:false});
+                            innerText = htmlobj.responseText;
+                            innerText = innerText.replace(/\n/g,"\r\n");
+                            innerText = innerText.replace(/\n/g,"\r\n");
+                            // console.log("==>>"+innerText);
+                            ////mark.............
+                            if(count>0 && !isOffLine){
+                                if(isIoppAlive(innerText)){
+                                    console.log("write To file");
+                                    Write2File(arrayId[indexOnline]);
+                                }else{
+                                    offLine();
+                                }
+                            }else{
+                                nextLoop();
+                            }
+                        }
+                    }
+                }else{
+                    console.error("down is fail");
+                    offLine();
+                }
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.error("超时");
+            console.error(XMLHttpRequest.status);
+            console.error(XMLHttpRequest.readyState);
+            console.error(textStatus);
+            offLine();
+        }
+    });
+}
+
 function showContrl(id){
-    clearTimeout(realtimeCtrlTimer1);//关闭定时器
     parent.realtimeSelectedDnum = id;
-    // opts ="";
-    // opts = {
-    //     title: '控制终端:'+id+'',
-    //     href: '/realtimectrl/create',
-    //     width: 1200,
-    //     height: 700,
-    //     closable: true,
-    //     modal: true,
-    //     top: (screen.height - 800) / 2,
-    //     left: (screen.width - 1200) / 2,
-    //     onLoad: function () {
-    //         //parent.$("#editForm").form('load', id);
-    //     },
-    //     onClose: function () {
-    //         parent.closeEditFormWin();
-    //     }
-    // };
-    // showWindow(opts);
     commandTimer(id);
 }
 function commandTimer(id) {
     var sendCom=sendCommand(id,true);
-    setTimeout(sendCom,3000);
+    setTimeout(sendCom,1000);
 }
 function sendCommand(id,flag){
+
     if(count == 0 || isOffLine){
         command = "ps |grep iopp|while read u p o;do kill -9 $p;done;./tvos/bin/iopp.sh;ps |grep iopp";
     }else {
@@ -105,16 +177,18 @@ function sendCommand(id,flag){
             id: null
         },
         success: function (data) {//返回命令在数据库中的id
-            if (flag) {//遥控器没有返回结果
-                resultdbId = data.msg;
-                //setSendMsgDisable();
-                clearTimeout(realtimeCtrlTimer1);//关闭定时器
-                if(data =="" ||undefined || null){
-                    console.log("这个客户端 :"+id+"离线了");
-                }else if(data){
-                    console.log("result is return id:"+id+"  resultdbId:"+resultdbId);
-                    startTimerDB(resultdbId);//查询是否返回结果，刷新操作历史记录
-                }
+            if (cmd != "Remote") {//遥控器没有返回结果
+                // loadCmdHistory();
+                setSendMsgDisable(8);
+                // console.log("send==.>");
+                //成功后刷新历史记录
+                // loadCmdHistory();
+                // 清空参数
+                $("#msg").val(null);
+                $("#nav3").val(null);
+            } else {
+                // 遥控器间隔时间设置成1秒
+                setSendMsgDisable(1);
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -126,8 +200,26 @@ function sendCommand(id,flag){
             //showContrl(arrayId[0]);
         }
     });
-    // $('#cmdResult').html("");//清空当前数据
+    $('#cmdResult').html("");//清空当前数据
     // $('#picResult').attr("src", "");
+}
+
+function setSendMsgDisable(time) {
+     // ifSend = 1;
+    sendFlagTimer = setTimeout(function () {//10秒内不能发命令
+        // ifSend = 0;
+        // if(count>0){
+            if(isOffLine){
+                getResult(offlineArray[indexOnline]);
+            }else{
+                getResult(arrayId[indexOnline]);
+            }
+        // }else{
+        //     nextLoop();
+        // }
+         // console.log("====3333==》》》"+arrayId[indexOnline]);
+
+    }, time * 1000);
 }
 
 function offLine(){
@@ -155,8 +247,8 @@ function offLine(){
 }
 
 function Write2File(id){
-    clearTimeout(realtimeCtrlTimer1);//关闭定时器
-    countNULL = 0;
+    // clearTimeout(realtimeCtrlTimer1);//关闭定时器
+    // countNULL = 0;
     var fso = new ActiveXObject("Scripting.FileSystemObject");
     var filespec= "C://emmc/"+id+"在"+getNowFormatDate()+"日的日志记录.txt";
     if(fso.FileExists(filespec)){
@@ -220,11 +312,7 @@ function nextLoop(){
             onLineLength = IDlength;  //记住上一次的长度，在合并之前
         }
     }
-    if(!isOffLine && refrashFlag<=0){
-        console.log("reflash..................");
-        refrashFlag = 20;
-        setTimeout(reloadList,1000);
-    }else if(!isOffLine){
+    if(!isOffLine){
         //console.log("no reflash");
         setTimeout('showContrl('+arrayId[indexOnline]+')',1000);
     }else{
